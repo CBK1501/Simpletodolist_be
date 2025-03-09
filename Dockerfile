@@ -7,8 +7,11 @@ WORKDIR /app
 # Copy the Maven project files
 COPY . .
 
+# Give execution permission to the Maven wrapper
+RUN chmod +x ./mvnw
+
 # Build the project
 RUN ./mvnw package
 
 # Run the application
-CMD ["java", "-jar", "Simpletodolist.jar"]
+CMD ["java", "-jar", "target/your-app-name.jar"]
