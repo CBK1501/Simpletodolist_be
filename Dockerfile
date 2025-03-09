@@ -7,11 +7,11 @@ WORKDIR /app
 # Copy the Maven project files
 COPY . .
 
-# Give execution permission to the Maven wrapper
-RUN chmod +x ./mvnw
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
-# Build the project
-RUN ./mvnw package
+# Build the project using Maven
+RUN mvn package
 
 # Run the application
 CMD ["java", "-jar", "target/your-app-name.jar"]
